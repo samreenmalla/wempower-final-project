@@ -1,0 +1,6 @@
+<%= simple_form_for @idea do |f| %>
+  <%= f.input :description %>
+     <%= render 'form', f: f%>
+  <%= f.submit 'Share', class: 'btn btn-primary' %>
+<% end %>
+   

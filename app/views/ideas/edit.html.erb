@@ -1,0 +1,10 @@
+<h1>Revise Idea</h1>
+	
+	<%= simple_form_for @idea do |f| %>
+	<%= f.input :description %>
+	<div class="field">
+  		<%= f.label :tag_list, "Tags (separated by commas)" %><br />
+  		<%= f.text_field :tag_list %>
+	</div>
+	<%= f.submit 'Submit' class: 'btn btn-primary' %>
+	<% end %>

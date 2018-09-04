@@ -1,0 +1,11 @@
+<div class = "container">	
+	<%= simple_form_for Donation.new do |f| %>
+	<%= f.input :Roll_No %>
+	<%= f.input :Name%>
+	<%= f.input :Faculty%>
+	<%= f.input :Year%>
+	<%= f.input :Contact_Number%>
+	<%= f.input :Donation_quantity%>
+	<%= link_to 'Donate',static_pages_donation_path , class: 'btn btn-primary' %>
+	 <% end %>
+</div>

@@ -1,0 +1,31 @@
+<% @ideas.each do |idea| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <blockquote>
+        <p><%= idea.description %></p>
+        <p>Tags: <%= raw idea.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+          <%= simple_form_for Comment.new, url: idea_comments_path(@ideas), method: :post do |f| %>
+            <%= f.input :text, label:'Comment', placeholder: 'Add a comment...' %>
+            <%= f.submit 'Comment', class: 'btn btn-primary btn-block' %>
+          <% end %>
+
+
+      </blockquote>
+      <br>
+      <% if idea.user == current_user %>
+        <%= link_to 'Delete', idea_path(idea), method: :delete, class: 'btn btn-sm btn-primary', data: {confirm: "Are you sure?"} %>
+        <%= link_to 'Revise', edit_idea_path(idea), class: 'btn btn-primary' %>
+      <%end%>
+    </div>
+  </div>
+<% end %>
+
+  <div id="tag_cloud">
+    <% tag_cloud Idea.tag_counts, %w{s m l} do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+    <% end %>
+  </div>
+
+
+
+

@@ -1,0 +1,35 @@
+<div class="profile_header">
+	<div class="row">
+		<div class="col-xs-13">
+			<%= image_tag @user.photo.url.to_s, class: 'profile_pic' %>
+		</div>
+		<div class="col-xs-8">
+			<div class="user_header">
+				<div class ="row">
+					<div class="col-xs-6">
+					<h1 class="Username"><%= @user.name %></h1>
+				</div>
+					<div class="col-xs-6">
+						<%= link_to 'Edit Profile', edit_user_registration_path(@user), 
+						class:'user_edit_button btn btn-default' if user_signed_in? && @user ==  current_user %>
+					</div>
+				</div>
+			</div>
+
+			<%= pluralize(@user.posts.count,'post') %>
+		</div>
+	</div>
+</div>
+
+<div class="prof_post_box">
+	<div class="row">
+		<% @user.posts.each do |post| %>
+			<div class="col-xs-6">
+				<%= image_tag post.photo.url.to_s, class: 'profile_show' %>
+				<%= post.caption %>
+				<%= link_to 'Edit Post', edit_post_path(post.id) %>
+				<%= link_to 'Delete Post', post_path(post.id), method: :delete %>
+			</div>
+		<% end %>
+	</div>
+</div>
